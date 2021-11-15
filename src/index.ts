@@ -22,6 +22,7 @@ const port = process.env.PORT || 3333;
 app.use(express.json());
 
 app.post("/users", (req, res) => {
+  logger.info("Log de Teste 123");
   const { token } = req.headers;
 
   const { name, instagram } = req.body;
@@ -31,6 +32,7 @@ app.post("/users", (req, res) => {
   }
 
   if (!name || !instagram) {
+    logger.error("invalid.parameters", req.body);
     return res.status(500).json({ error: "Invalid parameters" });
   }
 
